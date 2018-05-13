@@ -1,24 +1,22 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+# coding=utf-8
+from ihome import create_app, db
+from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
 
 
-class Config(object):
-    DEBUG = True
+app = create_app("development")
+manager = Manager(app)
+migrate = Migrate(app, db)
 
-    # mysql配置
-    SQLALCHEMY_DATABASE_URI = "mysql://root:mysql@127.0.0.1:3306/ihome"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-app = Flask(__name__)
-app.config.from_object(Config)
+manager.add_command("db", MigrateCommand)
 
 
-db = SQLAlchemy(app)
-
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def hello_world():
+
+    app.session_cookie_name = 'itheima'
     return 'Hello World!'
 
 
 if __name__ == '__main__':
-    app.run()
+    manager.run()
