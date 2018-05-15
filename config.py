@@ -23,7 +23,7 @@ class Config(object):
     # 设置session存储到哪个数据库中
     SESSION_REDIS = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
     # 开启session签名（加密）
-    SESSION_USE_SINGNER = True
+    SESSION_USE_SIGNER = True
     # 设置session过期时间
     PERMANENT_SESSION_LIFETIME = 3360
 

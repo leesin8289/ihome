@@ -1,10 +1,12 @@
 # coding=utf-8
-from config import config_dict
+import redis
+from flask import Flask
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
-import redis
-from flask import Flask
+
+from config import config_dict
+from ihome.api_1_0.index import api
 
 # 创建SQLAlchemy对象
 db = SQLAlchemy()
@@ -26,4 +28,6 @@ def create_app(config_name):
     CSRFProtect(app)
 
     Session(app)
+
+    app.register_blueprint(api)
     return app

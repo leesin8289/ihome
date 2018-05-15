@@ -11,11 +11,11 @@ migrate = Migrate(app, db)
 manager.add_command("db", MigrateCommand)
 
 
-@app.route('/', methods=["GET", "POST"])
-def hello_world():
-
-    app.session_cookie_name = 'itheima'
-    return 'Hello World!'
+# @app.route('/', methods=["GET", "POST"])
+# def hello_world():
+#
+#     app.session_cookie_name = 'itheima'
+#     return 'Hello World!'
 
 
 if __name__ == '__main__':
